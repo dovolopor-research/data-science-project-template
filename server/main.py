@@ -1,3 +1,5 @@
+from asyncio import sleep
+
 from sanic import Sanic
 from sanic.response import text, json
 
@@ -28,6 +30,7 @@ async def test(request):
     print(request.json)
     try:
         data = Data(**request.json)
+        await sleep(0.2)
         result = {
             "status": 1,
             "message": "success",

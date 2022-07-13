@@ -31,6 +31,8 @@
 ├── server             # 部署（可选）
 │   └── app.py
 ├── test               # 测试（可选）
+│   ├── function_test.py
+│   └── api_test.py
 ├── doc                # 文档（可选）
 ├── log                # 日志
 ├── Dockerfile         # Docker 打包配置（可选）
@@ -142,6 +144,29 @@ ENV=prod python -m server.main
 ### 1.11 test（测试｜可选）
 
 与模型的测试不同，这里主要为代码的单元测试 `UnitTest`。
+
+`function_test.py` 里面演示了如何做一个最简单的单元测试。
+
+```shell
+# 方法1：使用 python 执行
+python -m test.function_test
+# 方法：使用 pytest 执行，pytest 能够自动找到当前文件夹的所有测试文件
+pytest
+```
+
+`api_test.py` 是对 API 接口进行压力测试，得到 QPS（每秒请求数）。
+
+`Locust` 是一个非常好用的测试工具，它附带一个 WEB 界面，非常方便地在浏览器中进行压测。
+
+```shell
+locust -f test/api_test.py -u 10 -r 1
+```
+
+在浏览器中打开 `http://127.0.0.1:8089`，点击 `Start swarming` 按钮，就可以开始压测了！
+
+参考：
+1. [Python unittest: 单元测试框架](https://docs.python.org/zh-cn/3/library/unittest.html)
+2. [Locust: An open source load testing tool.](https://locust.io)
 
 ### 1.12 doc（文档｜可选）
 
