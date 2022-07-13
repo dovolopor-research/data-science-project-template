@@ -1,8 +1,5 @@
-from enum import Enum, unique
+from pydantic import BaseModel
 
 
-@unique
-class Env(Enum):
-    DEV = "dev"
-    TEST = "test"
-    PROD = "prod"
+class Data(BaseModel):
+    text: str = ...
